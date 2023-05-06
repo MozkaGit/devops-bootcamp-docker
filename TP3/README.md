@@ -1,6 +1,6 @@
 ## Module Docker · TP3
 
-Ce TP consiste à créer un réseau Docker en mode bridge puis d'y rattacher deux conteneurs afin de faire des tests de connectivité (ping). Pour faciliter le processus j'ai mis en place un script qui s'occupe de tout déployer. Il ne restera que le test ping a effectuer.
+Ce TP consiste à créer un réseau Docker en mode bridge puis d'y rattacher deux conteneurs afin de faire des tests de connectivité (ping). Pour faciliter le processus j'ai mis en place un [script](https://github.com/MozkaGit/devops-bootcamp-docker/blob/e1451271a7af80170917bcac4cf831e3df562d3c/TP3/network-bridge.sh) qui s'occupe de tout déployer. Il ne restera que le test ping a effectuer.
 Je vais tout de même indiquer les étapes ci-dessous.
 
 #### Étape 1 : Création du réseau en mode bridge
