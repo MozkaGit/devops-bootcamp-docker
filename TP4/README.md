@@ -6,7 +6,7 @@ Je vais tout de même indiquer les étapes ci-dessous.
 
 ### Partie 1 - Volumes nommés
 
-Cette 1ere partie consiste à monter un volume de type **Volumes** sur un de nos conteneurs puis de vérifier que le fichier est bien présent sur l'autre conteneur. Comme indiqué plus haut j'ai mis en place un script qui déploie toutes les commandes, il suffira juste de se connecter au conteneur 2 et vérifier que le fichier est bien présent.
+Cette 1ere partie consiste à monter un volume de type **Volumes** sur un de nos conteneurs puis de vérifier que le fichier est bien présent sur l'autre conteneur. Comme indiqué plus haut j'ai mis en place un [script](https://github.com/MozkaGit/devops-bootcamp-docker/blob/36b95cd000713a175ede5bd4c2ff7dc08dcaf25e/TP4/volumes-nas.sh) qui déploie toutes les commandes, il suffira juste de se connecter au conteneur 2 et vérifier que le fichier est bien présent.
 
 #### Étape 1 : Création du volume de type *Volumes*
 
@@ -56,7 +56,7 @@ MozkaGit, membre de la 13e promo du bootcamp Eazytraining.
 
 ### Partie 2 - Bind mount
 
-Cette 2nd partie consiste à monter un volume de type **bind mount** sur notre conteneur serveur web puis de modifier le fichier directement depuis le système hôte. Comme indiqué plus haut j'ai mis en place un script qui déploie toutes les commandes, il suffira juste de faire les vérifications et modifications manuellement.
+Cette 2nd partie consiste à monter un volume de type **bind mount** sur notre conteneur serveur web puis de modifier le fichier directement depuis le système hôte. Comme indiqué plus haut j'ai mis en place un [script](https://github.com/MozkaGit/devops-bootcamp-docker/blob/36b95cd000713a175ede5bd4c2ff7dc08dcaf25e/TP4/bint-mount.sh) qui déploie toutes les commandes, il suffira juste de faire les vérifications et modifications manuellement.
 
 #### Étape 1 : Clone du repo static-website-example
 
