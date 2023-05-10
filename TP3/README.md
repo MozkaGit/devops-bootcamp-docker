@@ -15,6 +15,7 @@ Je vais tout de même indiquer les étapes ci-dessous.
 
 #### Étape 3 : Installation de ***iputils-ping*** sur les deux containers
 ```docker exec -it ubuntu1 /bin/bash -c "apt-get update && apt-get install -y iputils-ping"```
+
 ```docker exec -it ubuntu2 /bin/bash -c "apt-get update && apt-get install -y iputils-ping"```
 
 #### Étape 4 : Test de connectivité
