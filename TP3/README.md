@@ -10,6 +10,7 @@ Je vais tout de même indiquer les étapes ci-dessous.
 #### Étape 2 : Création et rattachement de deux containers au réseau bridge
 
 ```docker run -it --name ubuntu1 --network network-bridge -d ubuntu /bin/bash```
+
 ```docker run -it --name ubuntu2 --network network-bridge -d ubuntu /bin/bash```
 
 #### Étape 3 : Installation de ***iputils-ping*** sur les deux containers
