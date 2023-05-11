@@ -122,8 +122,8 @@ Vérifions que nous avons accès au registre via l'interface web:
 
 Dans cette partie nous allons créer 2 yml:
 
-1. Le premier sera dédié au déploiement de notre [application]().
-2. Le second sera dédié au déploiement du [registre]().
+1. Le premier sera dédié au déploiement de notre [application](https://github.com/MozkaGit/devops-bootcamp-docker/tree/main/Projet).
+2. Le second sera dédié au déploiement du [registre](https://github.com/MozkaGit/devops-bootcamp-docker/tree/main/Projet).
 
 #### Étape 1: Création des fichiers yml
 
