@@ -133,7 +133,7 @@ Dans cette partie nous allons créer 2 yml:
 version: '3.3'
 services:
     api-app.img:
-        image: api-app.img
+        image: mozkadocker/student-app
         container_name: api-app
         networks:
             - students-network
