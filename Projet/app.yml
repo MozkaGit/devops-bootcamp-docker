@@ -1,7 +1,7 @@
 version: '3.3'
 services:
     api-app.img:
-        image: api-app.doc
+        image: mozkadocker/student-app
         container_name: api-app
         networks:
             - students-network
