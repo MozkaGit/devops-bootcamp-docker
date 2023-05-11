@@ -16,17 +16,17 @@ Renseigner les [instructions](https://github.com/MozkaGit/devops-bootcamp-docker
 
 #### Étape 4 : Création de l'image
 
-```Docker build -t webapp:v1 .```
+```docker build -t webapp:v1 .```
 
 #### Étape 5 : Test de l'image
 
 Avec la commande suivante :
 
-```Docker run --name webapp -d -p 80:80 webapp:v1```
+```docker run --name webapp -d -p 80:80 webapp:v1```
 
 #### Étape 6 : Déploiement de l'image Docker Hub
 
-```Docker push mozkadocker/webapp:v1```
+```docker push mozkadocker/webapp:v1```
 
 ----
 
