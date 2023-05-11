@@ -1,0 +1,27 @@
+version: '3.3'
+services:
+    api-app.img:
+        image: api-app.doc
+        container_name: api-app
+        networks:
+            - students-network
+        ports:
+            - '5000:5000'
+        volumes:
+            - './simple_api/:/data/'
+    
+    php:
+        image: 'php:7.2-apache'
+        container_name: web-app
+        networks: 
+            - students-network
+        ports:
+            - '80:80'
+        volumes:
+            - './website/:/var/www/html'
+        environment:
+            - USERNAME=toto
+            - PASSWORD=python
+networks:
+  students-network:
+    driver: bridge

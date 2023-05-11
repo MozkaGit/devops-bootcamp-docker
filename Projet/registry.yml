@@ -1,0 +1,27 @@
+version: '3.3'
+services:
+    registry:
+        image: 'registry:latest'
+        container_name: registry-pozos
+        networks:
+            - registry-network
+        ports:
+            - '5000:5000'
+        environment:
+            - REGISTRY_STORAGE_DELETE_ENABLED=true
+
+    docker-registry-ui:
+        image: 'joxit/docker-registry-ui:latest'
+        container_name: frontend-pozos
+        networks:
+            - registry-network
+        ports:
+            - '80:80'
+        environment:
+            - NGINX_PROXY_PASS_URL=http://registry-pozos:5000
+            - DELETE_IMAGES=true
+            - REGISTRY_TITLE=POZOS
+            - SINGLE_REGISTRY=true
+networks:
+  registry-network:
+    driver: bridge
