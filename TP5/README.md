@@ -1,6 +1,6 @@
 ## Module Docker · TP5
 
-Ce TP consiste à déploiyer une instance Odoo et une base de données PostgreSQL à l'aide de Docker Compose.
+Ce TP consiste à déploiyer une instance Odoo (système ERP open-source.) et une base de données PostgreSQL à l'aide de Docker Compose.
 
 #### Étape 1 : Création du docker compose
 
@@ -37,16 +37,22 @@ On constate que notre réseau est bien odoo_network et qu'ils ont le même **Net
 
 Accédez à l'interface Web d'Odoo en ouvrant un navigateur Web et en accédant à l'URL suivante : http://votre-ip/ (on ne précise pas de ports car l'énoncé stipule qu'il faut accéder à Odoo via le port 80)
 
-*<small>Image à venir</small>*
+![](./proof.png)
 
 
 ----
 
 ### Précisons
 
-1. Explication du fichier yml:
+1. Explication du fichier yml
 
-*À venir*
+Ce fichier `odoo.yml` décrit un ensemble de services qui fonctionnent ensemble pour exécuter l'application Odoo, qui est un système ERP open source.
 
-2. Lors de la première utilisation de l'application, il faudra la configurer en fournissant des informations de base telles que le nom de l'entreprise, la langue par défaut, etc.
+Le fichier contient deux services appelés `web` et `db`. Le service `web` utilise une image Docker `odoo:16.0` qui sera démarrée lorsque la commande de composition sera exécutée. Ce service dépend également du service `db`, qui est à son tour un conteneur PostgreSQL version 15.
+
+Le service `web` est accessible sur le port 80 de l'hôte, qui est mappé sur le port 8069 de l'image Docker Odoo. Enfin, les deux services sont connectés à un réseau Docker appelé `odoo_network`.
+
+Le réseau est configuré avec le pilote `bridge`, ce qui signifie que les conteneurs peuvent communiquer entre eux sur le même réseau.
+
+2. Lors de la première utilisation de l'application, il est impératif de procéder à l'initialisation (langue, pays, nom de la bdd etc.) puis de créer la base de données.
 3. Une fois la configuration terminée, il sera possible d'utiliser Odoo pour gérer notre entreprise.
