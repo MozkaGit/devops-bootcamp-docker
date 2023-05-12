@@ -14,11 +14,14 @@ Enfin dans la troisième partie nous allons comporiser nos conteneurs.
 
 Avec les commandes suivantes :
 
-`git clone https://github.com/diranetafen/student-list.git`
+[Les instructions du Dockerfile à renseigner](https://github.com/MozkaGit/devops-bootcamp-docker/blob/85bcc103d8b1dfd28aceca5c9f986fa4f438f258/Projet/simple_api/Dockerfile)
 
-`mv student_list/* .`
-
-`docker build -f simple_api/Dockerfile -t api-app.doc simple_api/`
+```
+git clone https://github.com/diranetafen/student-list.git
+mv student_list/* .
+vi simple_api/Dockerfile
+docker build -f simple_api/Dockerfile -t api-app.doc simple_api/
+```
 
 Voici le résultat:
 
@@ -93,9 +96,9 @@ Créons d'abord un réseau pour nos conteneurs:
 `docker network create registry-network`
 
 Maintenant il est temps de les créer:
-`docker run --rm -d -p 5000:5000 -e REGISTRY_STORAGE_DELETE_ENABLED=true --network registry-network --name registry-pozos registry:latest`
+`docker run --rm -d -p 5001:5000 -e REGISTRY_STORAGE_DELETE_ENABLED=true --network registry-network --name registry-pozos registry:2.7`
 
-`docker run --rm -d --name frontend-pozos -p 80:80 --network registry-network -e NGINX_PROXY_PASS_URL="http://registry-pozos:5000" -e DELETE_IMAGES=true -e REGISTRY_TITLE=POZOS joxit/docker-registry-ui:latest`
+`docker run --rm -d --name frontend-pozos -p 8090:80 --network registry-network -e REGISTRY_URL="http://registry-pozos:5000" -e DELETE_IMAGES=true -e REGISTRY_TITLE=POZOS joxit/docker-registry-ui:1.5-static`
 
 Vérifions que nous avons accès au registre via l'interface web:
 
@@ -103,13 +106,13 @@ Vérifions que nous avons accès au registre via l'interface web:
 
 #### Étape 2: Push de l'image dans le registre privé
 
-1. Avec un `docker image`il faut récupérer le nom ou l'ID de notre image afin de la tagger:
+1. Avec un `docker image` il faut récupérer le nom ou l'ID de notre image afin de la tagger:
 
-2. docker tag api-app.doc localhost:5000/api-app:private
+2. `docker tag api-app.doc localhost:5001/api-app:private`
 
 3. Passons maintenant au push de l'image:
 
-`docker push localhost:5000/api-app:private`
+`docker push localhost:5001/api-app:private`
 
 4. Notre image est bien présente:
 
@@ -120,14 +123,17 @@ Vérifions que nous avons accès au registre via l'interface web:
 
 ### Partie 3 - Dockerfile
 
-Dans cette partie nous allons créer 2 yml:
+Dans cette partie nous allons créer notre docker-compose.
 
-1. Le premier sera dédié au déploiement de notre [application](https://github.com/MozkaGit/devops-bootcamp-docker/tree/main/Projet).
-2. Le second sera dédié au déploiement du [registre](https://github.com/MozkaGit/devops-bootcamp-docker/tree/main/Projet).
+Il sera dédié au déploiement de nos 4 conteneurs:
+- L'application de listing des étudiants.
+- L'interface web de notre application de listing.
+- Le registre privé.
+- L'interface de notre registre privée.
 
-#### Étape 1: Création des fichiers yml
+#### Étape 1: Création du docker-compose.yml
 
-1. Voici l'équivalent de nos arguments docker run de l'application en yml:
+1. Voici l'équivalent de tous nos arguments `docker run` dans un docker-compose.yml:
 
 ```
 version: '3.3'
@@ -154,56 +160,47 @@ services:
         environment:
             - USERNAME=toto
             - PASSWORD=python
-networks:
-  students-network:
-    driver: bridge
-```
-
-2. Voici l'équivalent de nos arguments docker du registre en yml:
-
-```
-version: '3.3'
-services:
+    
     registry:
         image: 'registry:2.7'
         container_name: registry-pozos
         networks:
             - registry-network
         ports:
-            - '5000:5000'
+            - '5001:5000'
         environment:
             - REGISTRY_STORAGE_DELETE_ENABLED=true
 
     docker-registry-ui:
-        image: 'joxit/docker-registry-ui:latest'
+        image: 'joxit/docker-registry-ui:1.5-static'
         container_name: frontend-pozos
         networks:
             - registry-network
         ports:
-            - '80:80'
+            - '8090:80'
         environment:
-            - NGINX_PROXY_PASS_URL=http://registry-pozos:5000
+            - REGISTRY_URL=http://registry-pozos:5000
             - DELETE_IMAGES=true
             - REGISTRY_TITLE=POZOS
             - SINGLE_REGISTRY=true
+
 networks:
+  students-network:
+    driver: bridge
   registry-network:
     driver: bridge
 ```
 
-#### Étape 2: Exécution des yml
+#### Étape 2: Exécution du docker-compose.yml
 
-1. Démarrage de l'application: 
+1. Exécution: 
 
-`docker compose -f app.yml up -d`
+`docker compose up -d`
 
-![](./screens/app.yml-proof.png)
+![](./screens/docker-compo-up.png)
 
 ![](./screens/web-app.png)
 
-2. Démarrage du registre:
+2. Destruction:
 
-`docker compose -f registry.yml up -d`
-
-![](./screens/registry.yml-proof.png)
-
+![](./screens/docker-compose-down.png)
