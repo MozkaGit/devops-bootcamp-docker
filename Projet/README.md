@@ -165,7 +165,7 @@ networks:
 version: '3.3'
 services:
     registry:
-        image: 'registry:latest'
+        image: 'registry:2.7'
         container_name: registry-pozos
         networks:
             - registry-network
