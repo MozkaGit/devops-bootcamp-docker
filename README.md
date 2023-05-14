@@ -11,6 +11,10 @@ Vous trouverez ci-dessous l'ensemble des réalisations concernant le module.
 
 [**TP3 : Création d'un réseau en mode bridge et rattachement à 2 containers afin de faire des tests de connectivités (ping).**](https://github.com/MozkaGit/devops-bootcamp-docker/tree/main/TP3)
 
+[**TP4 : Création de deux volumes de type nommés et bind mount afin de respectivement rendre les données persistantes et facilement modifiable depuis le système hôte.**](https://github.com/MozkaGit/devops-bootcamp-docker/tree/60065f9989b37d43c28856ea4aa629b86146c967/TP4)
+
+[**TP5 : Déploiement d'une application à l'aide de Docker Compose.**](https://github.com/MozkaGit/devops-bootcamp-docker/tree/60065f9989b37d43c28856ea4aa629b86146c967/TP5)
+
 ---
 
 ## Table de matière des modules
